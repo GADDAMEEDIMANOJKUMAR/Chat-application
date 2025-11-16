@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Tell Tailwind: "dark:" should follow the .dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+}
