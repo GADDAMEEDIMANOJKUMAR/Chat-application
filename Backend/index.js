@@ -83,20 +83,6 @@ app.post("/api/chat/:id", (req, res) => {
 });
 
 
-// app.post("/api/chat/:id", (req, res) => {
-//   const sessionId = req.params.id;
-//   const { question } = req.body;
-
-//   if (!question || typeof question !== "string") {
-//     return res.status(400).json({ error: "Question is required and must be a string" });
-//   }
-
-//   // Add the message and generate mock structured response
-//   const responsePayload = addChatMessage(sessionId, question);
-
-//   res.json(responsePayload);
-// });
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
