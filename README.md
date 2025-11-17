@@ -110,11 +110,11 @@ Make sure your backend is running before sending chat requests.
 
 ### Backend (Render)
 
-* Public URL: **[https://your-backend-url.onrender.com](https://your-backend-url.onrender.com)**
+* Public URL: **[https://chat-application-svt0.onrender.com]**
 
 ### Frontend (Vercel)
 
-* Live URL: **[https://your-frontend-url.vercel.app](https://your-frontend-url.vercel.app)**
+* Live URL: **[https://chat-application-iou7m135u-manoj-kumar-gaddameedis-projects.vercel.app/]**
 * Environment Variable:
 
   ```
@@ -148,28 +148,8 @@ Theme persistence is handled with React's `useState`, `useEffect`, and `localSto
 
 ---
 
-## 📸 Screenshots (Add yours!)
-
-| Light Mode                   | Dark Mode                   |
-| ---------------------------- | --------------------------- |
-| ![Light](link-to-screenshot) | ![Dark](link-to-screenshot) |
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! Please follow best practices and lint your code before submitting.
-
----
-
-## 📜 License
-
-This project is built as part of an assignment and is licensed for educational purposes.
-
----
-
 ## ✍️ Author
 
 **Manoj Kumar**
-Frontend Developer in training
-GitHub: [https://github.com/your-username](https://github.com/your-username)
+Frontend Developer
+GitHub: [https://github.com/GADDAMEEDIMANOJKUMAR]
