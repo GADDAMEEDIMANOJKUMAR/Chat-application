@@ -1,11 +1,11 @@
-
+// src/components/AnswerFeedback.jsx
 import React, { useState } from "react";
 
 const AnswerFeedback = () => {
   const [feedback, setFeedback] = useState(null); // "like" | "dislike" | null
 
   return (
-    <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-gray-500">
       <span>Was this answer helpful?</span>
       <button
         type="button"

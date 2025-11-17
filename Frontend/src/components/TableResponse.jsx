@@ -1,11 +1,11 @@
-
+// src/components/TableResponse.jsx
 import React from "react";
 
 const TableResponse = ({ table }) => {
   if (!table || !table.columns || !table.rows) return null;
 
   return (
-    <div className="mt-3 border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden text-sm">
+    <div className="mt-3 border border-gray-200 dark:border-gray-700 rounded-md overflow-x-auto text-xs md:text-sm">
       <table className="min-w-full border-collapse">
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>

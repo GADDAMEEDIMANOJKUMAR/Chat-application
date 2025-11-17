@@ -1,9 +1,8 @@
-
+// src/components/Sidebar.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
-
 
 const Sidebar = () => {
   const [sessions, setSessions] = useState([]);
@@ -44,18 +43,18 @@ const Sidebar = () => {
   const isActiveSession = (id) => location.pathname === `/chat/${id}`;
 
   return (
-    <aside className="w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 flex flex-col">
-      <div className="px-3 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
-        <span className="font-semibold text-sm">Sessions</span>
+    <aside className="w-full md:w-64 bg-white dark:bg-gray-950 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 flex flex-col">
+      <div className="px-3 py-3 flex items-center justify-between">
+        <span className="font-semibold text-sm md:text-base">Sessions</span>
         <button
           onClick={handleNewChat}
-          className="text-xs px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
+          className="text-xs md:text-sm px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
         >
           New Chat
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto max-h-40 md:max-h-none">
         {loading ? (
           <p className="p-3 text-sm text-gray-500">Loading sessions...</p>
         ) : sessions.length === 0 ? (

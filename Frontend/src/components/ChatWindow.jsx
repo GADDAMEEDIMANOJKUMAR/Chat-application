@@ -1,4 +1,4 @@
-
+// src/components/ChatWindow.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatInput from "./ChatInput.jsx";
@@ -12,11 +12,11 @@ const ChatWindow = () => {
   const [sessionTitle, setSessionTitle] = useState("");
   const [messages, setMessages] = useState([]);
   const [lastTable, setLastTable] = useState(null);
-  const [lastDescription, setLastDescription] = useState(""); 
+  const [lastDescription, setLastDescription] = useState("");
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [sending, setSending] = useState(false);
 
-  // Load history when session changes
+  // Fetch session history
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -48,15 +48,13 @@ const ChatWindow = () => {
     }
   }, [sessionId]);
 
-  //  After user asks a new question
+  // Send message
   const handleSendMessage = async (question) => {
     try {
       setSending(true);
-
-      // Show user message immediately
+      // Add user message immediately
       setMessages((prev) => [...prev, { role: "user", content: question }]);
 
-      // Call backend to fetch dummy structured data
       const res = await fetch(`${API_BASE}/api/chat/${sessionId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -64,16 +62,15 @@ const ChatWindow = () => {
       });
 
       const data = await res.json();
+      const descriptionText =
+        data.description || data.answerText || "Here is your structured answer.";
 
-      // Show assistant message in chat using description/answer
-      const descriptionText = data.description || "Here is your structured answer.";
-
+      // Add assistant message
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: descriptionText },
       ]);
 
-      //  Store the latest structured/tabular data
       setLastTable(data.table || null);
       setLastDescription(descriptionText);
     } catch (err) {
@@ -91,18 +88,18 @@ const ChatWindow = () => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto">
-      {/* Header */}
+    <div className="flex flex-col h-full max-w-4xl w-full mx-auto">
+      {/* Session header */}
       <div className="mb-3">
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-base md:text-lg font-semibold">
           Session: <span className="font-normal">{sessionTitle}</span>
         </h2>
-        <p className="text-xs text-gray-500">
+        <p className="text-[10px] md:text-xs text-gray-500">
           Session ID: <code>{sessionId}</code>
         </p>
       </div>
 
-      {/* Chat Messages */}
+      {/* Messages area */}
       <div className="flex-1 overflow-y-auto border border-gray-200 dark:border-gray-800 rounded-md p-3 bg-white dark:bg-gray-950">
         {loadingHistory ? (
           <p className="text-sm text-gray-500">Loading conversation...</p>
@@ -120,13 +117,13 @@ const ChatWindow = () => {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
+                  className={`max-w-[80%] px-3 py-2 rounded-lg text-xs md:text-sm ${
                     msg.role === "user"
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
                   }`}
                 >
-                  <p className="mb-1 text-xs opacity-70">
+                  <p className="mb-1 text-[10px] md:text-xs opacity-70">
                     {msg.role === "user" ? "You" : "Assistant"}
                   </p>
                   <p>{msg.content}</p>
@@ -136,27 +133,24 @@ const ChatWindow = () => {
           </div>
         )}
 
-        {/*  Latest structured answer section */}
+        {/* Structured response */}
         {lastTable && (
           <div className="mt-4">
             <h3 className="text-sm font-semibold mb-1">
               Structured Response:
             </h3>
-
-            {/* description text above table */}
             {lastDescription && (
               <p className="text-xs text-gray-600 dark:text-gray-300 mb-2 whitespace-pre-line">
                 {lastDescription}
               </p>
             )}
-
             <TableResponse table={lastTable} />
             <AnswerFeedback />
           </div>
         )}
       </div>
 
-      {/* Input box */}
+      {/* Input */}
       <ChatInput onSend={handleSendMessage} disabled={sending || loadingHistory} />
     </div>
   );
