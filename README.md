@@ -87,7 +87,7 @@ Lumibyte Assignment
 ```bash
 cd backend
 npm install
-npm run dev    # nodemon or node server.js
+node index.js
 ```
 
 * Runs at: [http://localhost:5000](http://localhost:5000)
