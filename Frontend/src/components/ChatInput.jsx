@@ -1,4 +1,4 @@
-// src/components/ChatInput.jsx
+
 import React, { useState } from "react";
 
 const ChatInput = ({ onSend, disabled }) => {

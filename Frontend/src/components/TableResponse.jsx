@@ -1,4 +1,4 @@
-// src/components/TableResponse.jsx
+
 import React from "react";
 
 const TableResponse = ({ table }) => {

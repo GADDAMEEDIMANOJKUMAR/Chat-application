@@ -1,4 +1,4 @@
-// src/components/ChatWindow.jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatInput from "./ChatInput.jsx";
